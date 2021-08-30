@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import {Typogarphy, Button, Form, Input} from 'antd';
+import { Button, Form, Input} from 'antd';
+import FileUpload from '../../utils/FileUpload';
 
 const {TextArea} = Input;
 
@@ -38,6 +39,11 @@ function UploadProductPage() {
     setContinent(e.currentTarget.value)
   }
 
+  const updateImages = (newImages) => {
+    setImages(newImages)
+  }
+
+
 
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto"}}>
@@ -45,6 +51,8 @@ function UploadProductPage() {
         <h2>여행 상품 업로드</h2>
       </div>
     
+    <FileUpload refreshFunction={updateImages} />
+
     <Form>
 
     <br/>
