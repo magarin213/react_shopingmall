@@ -6,10 +6,10 @@ function LandingPage() {
     useEffect(() => {
 
 
-        Axios.post("/apu/product/products")
+        Axios.post("/api/product/products")
         .then(res => {
             if(res.data.success){
-
+                console.log(res.data)
             } else {
                 alert("상품 조회를 실패 했습니다.")
             }
