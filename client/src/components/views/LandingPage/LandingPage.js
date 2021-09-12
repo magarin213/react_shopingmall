@@ -1,15 +1,25 @@
-import React from 'react'
-import { FaCode } from "react-icons/fa";
+import React, { useEffect } from 'react'
+import Axios from 'axios'
 
 function LandingPage() {
+
+    useEffect(() => {
+
+
+        Axios.post("/apu/product/products")
+        .then(res => {
+            if(res.data.success){
+
+            } else {
+                alert("상품 조회를 실패 했습니다.")
+            }
+        })
+    }, [])
+
     return (
-        <>
-        <div className="app">
-            <FaCode style={{ fontSize: '4rem' }} /><br />
-            <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
-            <div>랜딩페이지</div>
+        <div>
+            LandingPage
         </div>
-        </>
     )
 }
 
