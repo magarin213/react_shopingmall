@@ -42,11 +42,11 @@ function UploadProductPage(props) {
 
   const updateImages = (newImages) => {
     setImages(newImages)
-  }
+}
 
   const submitHandler = (e) => {
 
-    if (!Title || !Description || !Price || !Continent || Images) {
+    if (!Title || !Description || !Price || !Continent || !Images.length) {
       return alert(" 모든 값을 넣어주셔야 합니다.")
   }
 

@@ -4,9 +4,27 @@ import {AppleOutlined, }  from '@ant-design/icons';
 import {Card, Row, Col} from "antd"
 import Meta from 'antd/lib/card/Meta';
 
+
 function LandingPage() {
 
     const [Products, setProducts] = useState([])
+
+
+
+
+    useEffect(() => {
+
+
+        Axios.post("/api/product/products")
+        .then(response => {
+            if(response.data.success){
+                console.log(response.data)
+                setProducts(response.data.productInfo)
+            } else {
+                alert("상품 조회를 실패 했습니다.")
+            }
+        })
+    }, [])
 
     const renderCards = Products.map((product, index) => {
         console.log('product',product)
@@ -22,20 +40,6 @@ function LandingPage() {
         </Col> 
     })
 
-
-    useEffect(() => {
-
-
-        Axios.post("/api/product/products")
-        .then(res => {
-            if(res.data.success){
-                console.log(res.data)
-                setProducts(res.data.productInfo)
-            } else {
-                alert("상품 조회를 실패 했습니다.")
-            }
-        })
-    }, [])
 
     return (
         <div style={{width:"75%", margin:"3rem auto"}}>

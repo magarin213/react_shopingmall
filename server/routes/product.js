@@ -10,7 +10,7 @@ const {
 //             Product
 //=================================
 
-const storage = multer.diskStorage({
+let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
   },
@@ -19,41 +19,29 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({
-  storage: storage
-}).single("file")
+let upload = multer({storage: storage}).single("file")
 
 router.post('/image', (req, res) => {
 
 
   //가져온 이미지를 저장을 해주면 된다.
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     if (err) {
-      return res.json({
-        success: false,
-        err
-      })
+      return res.json({success: false, err})
     }
-    return res.json({
-      success: true,
-      filePath: res.req.file.path,
-      fileName: res.req.file.filename
+    return res.json({success: true, filePath: res.req.file.path, fileName: res.req.file.filename
     })
   })
 })
 
 router.post('/', (req, res) => {
-  //받아온 정보들을 DB에 넣어준다.
+
+  //받아온 정보들을 DB에 넣어 준다.
   const product = new Product(req.body)
 
   product.save((err) => {
-    if (err) return res.status(400).json({
-      succedd: false,
-      err
-    })
-    return res.status(200).json({
-      success: true
-    })
+      if (err) return res.status(400).json({ success: false, err })
+      return res.status(200).json({ success: true })
   })
 
 })
