@@ -4,7 +4,8 @@ import {AppleOutlined, }  from '@ant-design/icons';
 import {Card, Row, Col} from "antd"
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
-
+import CheckBox from "../LandingPage/Section/CheckBox";
+import {continents} from "./Section/Data";
 
 
 
@@ -87,6 +88,14 @@ function LandingPage() {
 
             </div>
         {/* {Filter} */}
+
+
+
+
+
+        {/* {CheckBox} */}
+        <CheckBox list={continents}/>
+        {/* {RadioBox} */}
 
         {/* {Search} */}
 
