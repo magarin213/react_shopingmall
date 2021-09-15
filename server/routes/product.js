@@ -64,7 +64,8 @@ router.post('/products', (req, res) => {
       })
       return res.status(200).json({
         success: true,
-        productInfo
+        productInfo,
+        postSize: productInfo.length
       })
     })
 
