@@ -55,7 +55,19 @@ router.post('/products', (req, res) => {
 //key는 continents 혹은 price
   for(let key in req.body.filters){
     if(req.body.filters[key].length > 0){
-      findArgs[key] = req.body.filters[key];
+
+      if(key === "price"){
+        findArgs[key] = {
+          //gte, lte 몽고de에서 사용
+          //Greater than equal
+          $gte: req.body.filters[key][0],
+          //Less than equal
+          $lte: req.body.filters[key][1]
+        }
+      }else{
+        findArgs[key] = req.body.filters[key];
+      }
+
     }
   }
 
